@@ -4,7 +4,11 @@
 
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{pgfplots}
+\usepackage{pgfplots} % plot math graphs
+\usepackage{gensymb}
+\usepackage{comment} % commenting functionality
+\usepackage{tabularx} % better tabular env
+\usepackage{pdfpages} % include pages from external pdf
 \usepackage{hyperref} % hyperref should be the last package loaded
 
 \pgfplotsset{every axis/.append style={
@@ -557,9 +561,10 @@ where $k$ is the exponential growth/decay constant of the specific situation. $k
 $n$ refers to how frequently the interest is paid. For example:
 \begin{center}
 \begin{tabular}{l l}
-	semi-annual & means $n=2$ \\
+	monthly & means $n=12$ \\
 	quarterly& means $n=4$ \\
-	monthly & means $n=12$
+	semi-annually & means $n=2$ \\
+	annually & means $n=1$
 \end{tabular}
 \end{center}
 
@@ -571,6 +576,8 @@ $n$ refers to how frequently the interest is paid. For example:
 Use \eqref{cont} when the interest compounds continually.
 
 \section{Sequences and Series}
+
+\subsection{Sequences}
 A sequence is a function whose domain is a subset of the set of natural numbers ($\mathbb{N}$). The values in the range are called the terms of the sequence.
 
 \begin{center}
@@ -587,7 +594,7 @@ Ex. $20, 15, 10, 5, \dotso , -30$
 \end{tabular}
 \end{center}
 
-\subsection{Arithmetic Sequences}
+\subsubsection{Arithmetic Sequences}
 
 A sequence is arithmetic if the difference between the terms is constant. The general term of an arithmetic sequence is
 
@@ -601,7 +608,7 @@ A sequence is arithmetic if the difference between the terms is constant. The ge
 	& $n$ &is the number of terms \\
 \end{tabular}
 
-\subsection{Geometric Sequences}
+\subsubsection{Geometric Sequences}
 
 A sequence is geometric if the \emph{ratio} between the terms is constant. The general term of a geometric sequence is
 
@@ -615,14 +622,13 @@ A sequence is geometric if the \emph{ratio} between the terms is constant. The g
 	& $n$ &is the number of terms \\
 \end{tabular}
 
-\subsection{Means}
 \subsubsection{Arithmetic Means}
 If a question says ``insert $n$ arithmetic means between $a$ and $b$", where n,a,b are given, you need to find $n$ numbers between $a$ and $b$ which form an arithmetic sequence along with $a$ and $b$.
 
 \subsubsection{Geometric Means}
 If a question says ``insert $n$ geometric means between $a$ and $b$", where n,a,b are given, you need to find $n$ numbers between $a$ and $b$ which form a geometric sequence along with $a$ and $b$.
 
-\subsection{Simple Interest}
+\subsubsection{Simple Interest}
 Unlike compound interest (\ref{cmpint}), \emph{simple} interest means you only receive interest on the original amount. For example, a simple interest of 6\% per annum on an investment of \$200, means the amount will be
 
 \begin{center}
@@ -630,9 +636,235 @@ Unlike compound interest (\ref{cmpint}), \emph{simple} interest means you only r
 \end{center}
 which makes it an arithmetic series.
 
+\subsection{Series}
+A series is the sum of the terms of a sequence.
+Given a sequence $t_1, t_2, t_2, \dotsc, t_n$,
+$S_n$ denotes the sum of the first $n$ terms.
+This is called a partial sum.
+
+\subsubsection{Arithmetic Series}
+
+\begin{align}
+	S_n & = \frac{n}{2} (a + t_n) \label{arithseries1} \\
+	S_n & = \frac{n}{2} (2a + (n-1) d ) \label{arithseries2}
+\end{align}
+
+\noindent
+Proof.
+
+\begin{alignat*}{6}
+	S_n & = t_1 && + t_2     && + t_3     && + \dotsb && + t_{n-1} && + t_n \\
+	S_n & = t_n && + t_{n-1} && + t_{n-2} && + \dotsb && + t_2     && + t_1
+\end{alignat*}
+Writing both of these in terms of $a$ and $d$ gives
+\begin{alignat*}{6}
+	  S_n & = a        && + a+d      && + \dotsb && + a+(n-2)d && + a  + (n-1)d \\
+		S_n & = a+(n-1)d && + a+(n-2)d && + \dotsb && + a+d      && + a \\
+\end{alignat*}
+Adding the two,
+\begin{equation}
+	2 S_n = 2a+(n-1)d + 2a+(n-1)d + \dotsb + 2a+(n-1)d + 2a + (n-1)d
+\end{equation}
+\begin{align*}
+	2 S_n & = n(2a + (n-1)d) \\
+	S_n & = \frac{n}{2}(2a + (n-1)d)
+\end{align*}
+which gives \eqref{arithseries2}. To get \eqref{arithseries1} we can continue,
+\begin{align*}
+	S_n & = \frac{n}{2}(a + (a + (n-1)d)) \\
+	S_n & = \frac{n}{2}(a + t_n) \\
+\end{align*}
+
+\subsubsection{Geometric Series}
+
+\begin{alignat}{2}
+	S_n & = && \frac{a(1-r^n)}{1-r}, \qquad r \ne 1 \label{geoseries1} \\
+	S_n & = && \frac{a(r^n - 1)}{r-1}, \qquad r \ne 1 \label{geoseries2} 
+\end{alignat}
+
+Proof.
+\begin{alignat*}{2}
+	S_n & = a + ar + ar^2 + \dotsb + ar^{n-2} + ar^{n-1} \\
+	r S_n & = ar + ar^2 + \dotsb + ar^{n-2} + ar^{n-1} + ar^n \\
+	S_n - rS_n & = a - ar^n \\
+	S_n(1-r) & = a(1-r^n) \\
+	S_n & = \frac{a(1-r^n)}{1-r}
+\end{alignat*}
+which gives \eqref{geoseries1}.
+
+\bigskip
+\noindent
+Sum of infinite geometric series:
+\begin{equation}
+	 S_\infty = \frac{a}{1-r}
+\end{equation}
 
 
+\noindent
+A useful equation to solve problems is
 
+\begin{equation} \label{extra}
+	t_n = S_n - S_{n-1}
+\end{equation}
+
+\eqref{extra} is useful when you are given an expression for $S_n$ and asked to find one of the terms of $t$.
+
+\subsubsection{Sigma notation}
+Properties:
+
+\begin{align}
+	&\sum_{i=1}^n c = cn \\
+	&\sum_{i=1}^n c \,t_i = c \sum_{i=1}^n t_i \\
+	&\sum_{i=1}^n (a_i \pm b_i) = \sum_{i=1}^n a_i \pm \sum_{i=1}^n b_i \\
+	&\sum_{i=1}^n t_i = \sum_{i=1}^c t_i + \sum_{i=c+1}^n t_i , \quad 1 < c < n \\
+\end{align}
+
+\section{Trig Review}
+\begin{equation*}
+	\sin^{-1} \ne csc
+\end{equation*}
+
+Because $\sin^{-1}$ denotes the inverse function of $\sin$, which is $\arcsin$. This is similar to how $f^{-1}(x)$ denotes the inverse function of $f$.
+
+But note that $\sin^2(x) = [ \sin(x) ]^2$, or $\sin^3(x) = [\sin(x)]^3$, etc.
+
+\subsection{Terminology}
+\paragraph{Standard form} An angle in standard form has one arm on the positive $x$-axis, called the initial arm, and the other arm anywhere else, called the terminal arm.
+\paragraph{Principal angle} The counter clockwise angle between the initial and terminal arm of an angle in standard position.
+\paragraph{Co-terminal angles}
+are angles whose terminal arms have the same standard position. If $\alpha$ and $\theta$ are co-terminal angles,
+\begin{equation}
+	\alpha - \theta = k \times 360 \degree \quad \textrm{ where } k \in \mathbb{Z}
+\end{equation}
+or in other words
+\begin{equation}
+	\alpha = k \times 360 \degree + \theta \quad \textrm{ where } k \in \mathbb{Z}
+\end{equation}
+So to find a co-terminal angle of $\theta$ you can simply add or subtract multiples of $360 \degree$.
+\paragraph{Related Acute Angle (RAA)} a.k.a. \textbf{Reference Angle (RA)} is the positive acute angle between the terminal arm and $x$-axis of an angle in standard position.
+\paragraph{Angle of Elevation/Depression}
+in word problems, the angle of elevation or depression is the angle made from the horizontal to the line of sight.
+
+\subsection{Method to Evaluate a Trig Ratio}
+First find the RAA of $\theta$. Let's call it $\alpha$. Then calculate $\sin\alpha$. Then use the CAST rule to determine the sign of $\sin\theta$ and apply it to $\sin\alpha$.
+
+\subsection{Circle Stuff}
+\subsubsection{Radians}
+\begin{equation}
+	1 \textrm{ rad } = \frac{180 \degree}{\pi}
+\end{equation}
+\begin{equation}
+	1 \degree = \frac{\pi}{180 \degree} \textrm{ radians}
+\end{equation}
+
+\subsubsection{Sectors and Segments}
+Arc length, a
+\begin{equation} \label{arc}
+	a = r \theta
+\end{equation}
+
+\bigskip
+\noindent
+Area of a sector, A
+\begin{equation} \label{sector}
+	A = \frac{r^2}{2} \theta
+\end{equation}
+
+\bigskip
+\noindent
+Area of a segment, A
+\begin{equation} \label{sector}
+	A = \frac{r^2}{2} (\theta - \sin \theta)
+\end{equation}
+
+\bigskip
+\noindent
+Note that $\theta$ is in radians.
+
+\subsection{Compass Bearings}
+\paragraph{Compass Bearing}
+an angle measured from a specified direction. For example, South $30\degree$ East (or S30\degree E) means an angle $30\degree$ East from the South direction.
+
+\paragraph{True Bearing}
+like a compass bearing but always measured from North. For example, the true bearing 150\degree T is the same as the compass bearing S30\degree E. Also, if the angle is less than $100 \degree$, prepend with a zero. For example: 040\degree T.
+
+\subsection{Graphing Trig Functions}
+General form
+\begin{equation}
+	y = A \sin [k(x-a)] + c
+\end{equation}
+\medskip
+\begin{tabular}{l l}
+	A & is amplitude (vertical stretch) $\left( \frac{\mathrm{max} - \mathrm{min}}{2} \right)$ \\
+	$y=c$ & is the equation of the sinusoidal axis (the midline) $\left(\frac{\mathrm{max}+\mathrm{min}}{2}\right)$ \\
+	a & is phase shift \\
+	$\frac{2\pi}{k}$ & is the period
+\end{tabular}
+
+\noindent
+Important Increment (II): $\frac{\mathrm{period}}{4}$
+
+\bigskip
+\noindent
+\begin{tabularx}{\textwidth}{ X | X | X | X | X }
+	Num of II & 1 & 2 & 3 & 4 \\ \hline
+	sin & axis & max & axis & min \\ \hline
+	cos & max & axis & min & axis
+\end{tabularx}
+
+\paragraph{Scaling Increments (SI)}
+SI is a fraction with numerator $\pi$ and denominator equal to the lcm of the denominators of II and Phase Shift. The SI is used as the smallest tick mark when graphing.
+
+\subsection{Steps to Graph}
+\begin{enumerate}
+	\item Find $\mathrm{max}=c+a$ and $\mathrm{min}=c-a$ \\
+	\item Determine $\mathrm{period}=\frac{2\pi}{k}$ \\
+	\item Calculate $\mathrm{II}=\frac{\mathrm{period}}{4}$ \\
+	\item Calculate Scaling Increment \\
+	\item Graph using the pattern for $\sin$ or $\cos$. Remember to account for reflections and phase shift.
+\end{enumerate}
+
+\includepdf[pagecommand={}]{finding-equation-of-sin-function.pdf}
+
+\subsection{Inverse Trig Functions}
+
+\paragraph{$\sin ^{-1} x$}
+\begin{tabular}{l l}
+	Domain: & $-1 \le x \le 1$\\
+	Range: & $-\frac{\pi}{2} \le y \le \frac{\pi}{2}$ \\
+\end{tabular}
+
+\paragraph{$\cos ^{-1} x$}
+\begin{tabular}{l l}
+	Domain: & $-1 \le x \le 1$ \\
+	Range: & $0 \le y \le \pi$ \\
+\end{tabular}
+
+\paragraph{$\tan ^{-1} x$}
+\begin{tabular}{l l}
+	Domain: & $-1 \le x \le 1$ \\
+	Range: & $-\frac{\pi}{2} \le y \le \frac{\pi}{2}$ \\
+\end{tabular}
+
+\bigskip
+
+The following equations hold only when $x$ is in the range of $\sin^{-1}$ or $\cos^{-1}$.
+\begin{alignat*}{2}
+	\sin ^ {-1} ( \sin x ) &= x  \\
+	\cos ^ {-1} ( \cos x ) &= x  \\
+	\tan ^ {-1} ( \tan x ) &= x  \\
+\end{alignat*}
+Note that if the inverse function is on the inside it always equals x. For example $\sin( \sin^{-1} x )$ for all $x$ such that $-1 \le x \le 1$.
+
+\subsection{Identities}
+
+These are also called Pythagorean Identities
+\begin{alignat}{2}
+	1 + \tan ^2 x &= \sec ^ 2x \\
+	1 + \cot ^2 x &= \csc ^2 x
+\end{alignat}
+
+\begin{comment}
 \section{Test Topics}
 \subsection{Test 1}
 \subsection{Test 2}
@@ -647,5 +879,6 @@ which makes it an arithmetic series.
 	\item Abs Value Eqn and Inequalities
 	\item IB Questions
 \end{itemize}
+\end{comment}
 
 \end{document}
