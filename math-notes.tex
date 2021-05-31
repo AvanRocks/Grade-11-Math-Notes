@@ -1,6 +1,7 @@
 \documentclass{article}
 
 \newcommand\R{\mathbb{R}}
+\newcommand\Z{\mathbb{Z}}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -10,6 +11,8 @@
 \usepackage{tabularx} % better tabular env
 \usepackage{pdfpages} % include pages from external pdf
 \usepackage{hyperref} % hyperref should be the last package loaded
+
+\DeclareMathOperator\cis{cis}
 
 \pgfplotsset{every axis/.append style={
   axis x line=middle,    % put the x axis in the middle
@@ -67,7 +70,7 @@ Relation to equation:
 	\frac{ax^2 + bx + c}{a} &= 0 \\ 
 	x^2 + \frac{b}{a}x + \frac{c}{a} &= 0 \\ 
 	x^2 - \left( - \frac{b}{a} \right) x + \frac{c}{a} &= 0 \\ 
-	x^2 - \mathrm{S} x + \mathrm{P} &= 0 \\
+	x^2 - \mathrm{S} x + \mathrm{P} &= 0 
 \end{align*}
 where S is the sum of roots and P is the product of roots.
 
@@ -144,7 +147,7 @@ General form of a transformed function:
 	$c > 0$ & horizontal translation $c$ units to the right \\
 	$c < 0$ & horizontal translation $c$ units to the left \\
 	$d > 0$ & vertical translation $d$ units up \\
-	$d < 0$ & vertical translation $d$ units down \\
+	$d < 0$ & vertical translation $d$ units down 
 \end{tabular}
 \end{samepage}
 
@@ -201,7 +204,7 @@ General form of a transformed function:
 \end{equation*}
 \begin{tabular}{l l}
 	v.a.: & $x=r$ \\
-	h.a.: & $y=0$ \\
+	h.a.: & $y=0$ 
 \end{tabular}
 
 \begin{center}
@@ -246,7 +249,7 @@ General form of a transformed function:
 	&\\
 	y-int: & $\left(0,\frac{b}{d}\right)$ \\
 	&\\
-	x-int: & $\left(-\frac{b}{a}, 0\right)$ \\
+	x-int: & $\left(-\frac{b}{a}, 0\right)$ 
 \end{tabular}
 
 \begin{center}
@@ -407,13 +410,17 @@ For more complex ones, examine each interval seperately like you do when solving
 \section{Inverse and Composite Functions}
 
 $f \circ g(x)$ is read as "f compose g of x". It is synonymous to $f(g(x))$.
-\\ \\
+
+\bigskip \noindent
 Note that $f \circ g(x) \ne g \circ f(x)$. (composition is not always commutative)
-\\ \\
+
+\bigskip \noindent
 But $f \circ f^{-1} = f^{-1} \circ f(x) = x$.
-\\ \\
+
+\bigskip \noindent
 Self inverse function: $f(x) = f^{-1}(x)$.
-\\ \\
+
+\bigskip \noindent
 Given $f(x)$, to find the intersection of $f(x)$ and $f^{-1}(x)$ without solving for $f^{-1}(x)$, you simply find the intersection of $f(x)$ and $y=x$. This works because $f^{-1}(x)$ is a reflection of $f(x)$ across the line $y=x$.
 
 \subsection{Techniques to Solve Function Composition Problems}
@@ -476,7 +483,7 @@ Examine each branch individually and reason out how the reciprocal would look li
 \begin{center}
 \begin{tabular}{l l}
 	$n$ & is called the index \\
-	$x$ & is called the radicand \\
+	$x$ & is called the radicand 
 \end{tabular}
 \end{center}
 \end{samepage}
@@ -488,7 +495,7 @@ Also in the exponential form:
 \begin{center}
 \begin{tabular}{l l}
 	$b$ & is the exponent \\
-	$c$ & is the index \\
+	$c$ & is the index 
 \end{tabular}
 \end{center}
 \end{samepage}
@@ -503,7 +510,8 @@ Where $a > 0$, $a \ne 1$.
 	f(x) = \log_b x
 \end{equation*}
 Where $x > 0$, $b > 0$, $b \ne 1$.
-\\ \\
+
+\bigskip \noindent
 $y = \log_a x$ is the inverse of $y = a^x$.
 \paragraph{Power Law}
 \begin{equation}
@@ -527,7 +535,8 @@ $y = \log_a x$ is the inverse of $y = a^x$.
 	$t$ & is time \\
 	$h$ & is half-life (same units as $t$)
 \end{tabular}
-\\ \\
+
+\bigskip \noindent
 Both \eqref{1} and \eqref{2} can be used to solve problems.
 
 \paragraph{General Form}
@@ -536,7 +545,8 @@ Both \eqref{1} and \eqref{2} can be used to solve problems.
 \end{equation}
 
 where $k$ is the exponential growth/decay constant of the specific situation. $k$ can be calculated if you are given the half-life or doubling time (or even the time it takes to reach some fraction/multiple of the original amount.
-\\ \\
+
+\bigskip \noindent
 \begin{tabular}{l l}
 	If $k > 0$ & it's exponential growth \\
 	If $k < 0$ & it's exponential decay
@@ -557,7 +567,8 @@ where $k$ is the exponential growth/decay constant of the specific situation. $k
 	$t$ & is the time (years)
 \end{tabular}
 \end{samepage}
-\\ \\
+
+\bigskip \noindent
 $n$ refers to how frequently the interest is paid. For example:
 \begin{center}
 \begin{tabular}{l l}
@@ -590,7 +601,7 @@ Ex. $20, 15, 10, 5, \dotso , -30$
 	1 & 20 \\
 	2 & 15 \\
 	3 & 10 \\
-	4 & 10 \\
+	4 & 10 
 \end{tabular}
 \end{center}
 
@@ -605,7 +616,7 @@ A sequence is arithmetic if the difference between the terms is constant. The ge
 \begin{tabular}{l l l}
 	where & $a$ &is the first term \\
 	& $d$ &is the common difference ($d = t_n - t_{n-1}$) \\
-	& $n$ &is the number of terms \\
+	& $n$ &is the number of terms 
 \end{tabular}
 
 \subsubsection{Geometric Sequences}
@@ -619,7 +630,7 @@ A sequence is geometric if the \emph{ratio} between the terms is constant. The g
 \begin{tabular}{l l l}
 	where & $a$ &is the first term \\
 	& $r$ &is the common ratio $\left(r = \frac{t_n}{t_{n-1}} \right)$ \\
-	& $n$ &is the number of terms \\
+	& $n$ &is the number of terms 
 \end{tabular}
 
 \subsubsection{Arithmetic Means}
@@ -659,7 +670,7 @@ Proof.
 Writing both of these in terms of $a$ and $d$ gives
 \begin{alignat*}{6}
 	  S_n & = a        && + a+d      && + \dotsb && + a+(n-2)d && + a  + (n-1)d \\
-		S_n & = a+(n-1)d && + a+(n-2)d && + \dotsb && + a+d      && + a \\
+		S_n & = a+(n-1)d && + a+(n-2)d && + \dotsb && + a+d      && + a 
 \end{alignat*}
 Adding the two,
 \begin{equation}
@@ -672,7 +683,7 @@ Adding the two,
 which gives \eqref{arithseries2}. To get \eqref{arithseries1} we can continue,
 \begin{align*}
 	S_n & = \frac{n}{2}(a + (a + (n-1)d)) \\
-	S_n & = \frac{n}{2}(a + t_n) \\
+	S_n & = \frac{n}{2}(a + t_n) 
 \end{align*}
 
 \subsubsection{Geometric Series}
@@ -716,7 +727,7 @@ Properties:
 	&\sum_{i=1}^n c = cn \\
 	&\sum_{i=1}^n c \,t_i = c \sum_{i=1}^n t_i \\
 	&\sum_{i=1}^n (a_i \pm b_i) = \sum_{i=1}^n a_i \pm \sum_{i=1}^n b_i \\
-	&\sum_{i=1}^n t_i = \sum_{i=1}^c t_i + \sum_{i=c+1}^n t_i , \quad 1 < c < n \\
+	&\sum_{i=1}^n t_i = \sum_{i=1}^c t_i + \sum_{i=c+1}^n t_i , \quad 1 < c < n 
 \end{align}
 
 \section{Trig Review}
@@ -773,7 +784,7 @@ Area of a sector, A
 \bigskip
 \noindent
 Area of a segment, A
-\begin{equation} \label{sector}
+\begin{equation} \label{segment}
 	A = \frac{r^2}{2} (\theta - \sin \theta)
 \end{equation}
 
@@ -813,37 +824,49 @@ Important Increment (II): $\frac{\mathrm{period}}{4}$
 \end{tabularx}
 
 \paragraph{Scaling Increments (SI)}
-SI is a fraction with numerator $\pi$ and denominator equal to the lcm of the denominators of II and Phase Shift. The SI is used as the smallest tick mark when graphing.
+When graphing, the smallest tick on the $x$-axis should divide the phase shift and II. Let's call the smallest tick length the Scaling Increment, or SI.
+The SI is used as the smallest tick mark when graphing.
+\begin{equation*}
+	\textrm{An easy way to find the SI for: }\left( \frac{\pi}{a}, \frac{\pi}{b} \right) \textrm{ is } \frac{\pi}{\mathrm{lcm}(a,b)}
+\end{equation*}
 
 \subsection{Steps to Graph}
 \begin{enumerate}
-	\item Find $\mathrm{max}=c+a$ and $\mathrm{min}=c-a$ \\
-	\item Determine $\mathrm{period}=\frac{2\pi}{k}$ \\
-	\item Calculate $\mathrm{II}=\frac{\mathrm{period}}{4}$ \\
-	\item Calculate Scaling Increment \\
+	\item Find $\mathrm{max}=c+a$ and $\mathrm{min}=c-a$
+	\item Determine $\mathrm{period}=\frac{2\pi}{k}$
+	\item Calculate $\mathrm{II}=\frac{\mathrm{period}}{4}$
+	\item Calculate Scaling Increment
 	\item Graph using the pattern for $\sin$ or $\cos$. Remember to account for reflections and phase shift.
 \end{enumerate}
 
 \includepdf[pagecommand={}]{finding-equation-of-sin-function.pdf}
+
+\section{General Solutions to Trig Problems}
+Solutions come in multiples of the period, so the final answer would look like:
+\begin{equation*}
+	\theta = \frac{7\pi}{6} + k \pi \quad \textrm{or} \quad \theta = \frac{\pi}{6} + k \pi, \qquad k \in \Z
+\end{equation*}
+
+If a domain is given, find all the solutions in the domain, otherwise, write down the general solution. 
 
 \subsection{Inverse Trig Functions}
 
 \paragraph{$\sin ^{-1} x$}
 \begin{tabular}{l l}
 	Domain: & $-1 \le x \le 1$\\
-	Range: & $-\frac{\pi}{2} \le y \le \frac{\pi}{2}$ \\
+	Range: & $-\frac{\pi}{2} \le y \le \frac{\pi}{2}$ 
 \end{tabular}
 
 \paragraph{$\cos ^{-1} x$}
 \begin{tabular}{l l}
 	Domain: & $-1 \le x \le 1$ \\
-	Range: & $0 \le y \le \pi$ \\
+	Range: & $0 \le y \le \pi$ 
 \end{tabular}
 
 \paragraph{$\tan ^{-1} x$}
 \begin{tabular}{l l}
 	Domain: & $-1 \le x \le 1$ \\
-	Range: & $-\frac{\pi}{2} \le y \le \frac{\pi}{2}$ \\
+	Range: & $-\frac{\pi}{2} \le y \le \frac{\pi}{2}$ 
 \end{tabular}
 
 \bigskip
@@ -852,7 +875,7 @@ The following equations hold only when $x$ is in the range of $\sin^{-1}$ or $\c
 \begin{alignat*}{2}
 	\sin ^ {-1} ( \sin x ) &= x  \\
 	\cos ^ {-1} ( \cos x ) &= x  \\
-	\tan ^ {-1} ( \tan x ) &= x  \\
+	\tan ^ {-1} ( \tan x ) &= x  
 \end{alignat*}
 Note that if the inverse function is on the inside it always equals x. For example $\sin( \sin^{-1} x )$ for all $x$ such that $-1 \le x \le 1$.
 
@@ -881,4 +904,113 @@ These are also called Pythagorean Identities
 \end{itemize}
 \end{comment}
 
+\section{Complex Numbers}
+\paragraph{Cartesian (or Rectangular Form)}
+\begin{equation*}
+	z = a + bi
+\end{equation*}
+\paragraph{Polar form}
+\begin{equation*}
+	z = r \cis ( \theta + 2 \pi k )
+\end{equation*}
+\begin{tabular}[]{l l}
+	r & is the modulus $\left( r = \sqrt{a^2+b^2} \right)$ \\
+	$\theta$ & is the argument
+\end{tabular}
+
+\subsection{Adding and Subtracting in Polar Form}
+Polar form gives you nothing special for adding/subtracting. Convert to cartesian form then add/subtract.
+
+\subsection{Multiplying in Polar Form}
+\begin{alignat*}{2}
+	( r_1 \cis \theta_1 ) ( r_2 \cis \theta_2 ) &= [ r_1 ( \cos \theta_1 + i \sin \theta_1 ) ] [ r_2 ( \cos \theta_2 + i \sin \theta_2 ) ] \\
+	&= r_1r_2 [ \cos\theta_1\cos\theta_2 - \sin\theta_1\sin\theta_2 + i ( \sin\theta_1\cos\theta_2 + \sin\theta_2\cos\theta_1)] \\
+	&= r_1r_2 [ \cos ( \theta_1 + \theta_2 ) + i \sin ( \theta_1 + \theta_2 ) ] \\
+	&= r_1r_2 \cis ( \theta_1 + \theta_2 )
+\end{alignat*}
+
+When mulitplying complex numbers in polar form, \emph{magnitudes multiply and angles add}.
+
+\subsection{Conjugate}
+If $z = a + bi = r \cis \theta$, then the conjugate, $\overline{z}$ or $z^*$ is:
+
+\begin{equation}
+	z^* = r \cis ( - \theta )
+\end{equation}
+You can see this graphically.
+
+\medskip
+\noindent
+Recall:
+\begin{alignat*}{2}{}
+	z z^* &= (a+bi)(a-bi) \\
+	      &= a^2 + b^2 \\
+				&= | z | ^2
+\end{alignat*}
+In polar form, this becomes,
+\begin{alignat*}{2}{}
+	z z^* &= (r\cis \theta ) ( r \cis ( - \theta	) ) \\
+			 &= r^2 \cis ( \theta - \theta ) \\
+			 &= r^2 ( \cos 0 + i \sin 0 ) \\
+			 &= r^2 \\
+			 &= | z | ^2
+\end{alignat*}
+In the above equations, you can skip a step if you see that since the argument $\theta - \theta = 0$, the number lies on the Real-axis.
+
+\subsection{Division}
+Recall: to divide complex numbers, we multiply the numerator and denominator by the conjugate.
+
+\begin{alignat*}{2}{}
+	\frac{r_1 \cis \theta_1}{r_2 \cis \theta_2} = \frac{z_1}{z_2} &= \frac{z_1 \overline{z}_2}{z_2\overline{z}_2} \\
+	&= \frac{(r_1\cis\theta_1)(r_2\cis(-\theta_2))}{r^2} \\
+	&= \frac{r_1}{r_2}\cis(\theta_1-\theta_2
+\end{alignat*}
+\section{Vectors}
+Vectors have:
+\begin{itemize}
+	\item initial point (tail)
+	\item terminal point (tip)
+\end{itemize}
+The \textbf{magnitude} of a vector $\vec u$ is denoted by $| \vec u |$.
+
+\bigskip \noindent
+\textbf{Free vector}: a vector whose position is not fixed.
+
+\subsection{Vector Equality (definition)}
+Two vector are equal if and only if:
+\begin{itemize}
+	\item they have the same magnitude
+	\item they have the same direction	
+\end{itemize}
+we write $\vec u = \vec v$ if they are equal.
+
+\subsection{Vector Addition (definition)}
+Place the tail of $\vec v$ on the tip of $\vec u$. $\vec u + \vec v$ is defined as the vector from the tail of $\vec u$ to the tip of $\vec v$. $\vec u + \vec v$ is called the \emph{sum} or \emph{resultant} of $\vec u$ and $\vec v$.
+
+Or, you can use the parallelogram law.
+
+\subsection{Angles between Vectors}
+The angle between two vectors is the angle formed when the vectors are placed \emph{tail to tail}.
+
+\subsection{Opposite}
+The \emph{opposite} of $\vec u$ is a vector with the same magnitude but exactly opposite direction. The opposite of $\vec u$ is denoted by $- \vec u$. The sum of a vector and its opposite is a vector with zero magnitude. This vector is called a \emph{zero vector} or $\vec 0$.
+
+\begin{equation}
+	\vec u + ( - \vec u ) = \vec 0
+\end{equation}
+A zero vector has indeterminate direction and magnitude 0.
+
+\subsection{Vector Subtraction}
+Vector subtraction is defined as ``adding the opposite''.
+\begin{equation}
+	\vec u - \vec v = \vec u + ( - \vec v), \quad \textrm{ by definition}
+\end{equation}
+It can also be illustrated as:
+
+
+\section{IB Conventions}
+\begin{enumerate}
+	\item The set of Natural numbers includes 0. i.e. $\mathbb{N} = \{0,1,2,\dots\}$.
+	\item All polar answers in $\cis$ notation must be expressed with argument $\theta$ such that $\pi\le\theta\le\pi$. But answers in Euler's form must have argument $\theta$ such that $0 \le \theta \le 2 \pi$. For ex. $2e^{-\pi i}$ is not allowed, but $2\cis(-\pi)$ is allowed.
+\end{enumerate}
 \end{document}
