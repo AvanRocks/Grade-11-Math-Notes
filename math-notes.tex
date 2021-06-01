@@ -2,6 +2,16 @@
 
 \newcommand\R{\mathbb{R}}
 \newcommand\Z{\mathbb{Z}}
+\newcommand\pv[1]{\overrightarrow{#1}}
+\newcommand\ihat{\hat i}
+\newcommand\jhat{\hat j}
+\newcommand\khat{\hat k}
+\newcommand{\diagram}[2][0.5]{
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=#1\textwidth]{#2}
+	\end{figure}
+	}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -10,9 +20,18 @@
 \usepackage{comment} % commenting functionality
 \usepackage{tabularx} % better tabular env
 \usepackage{pdfpages} % include pages from external pdf
+\usepackage{float}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{amsthm}
+\usepackage{tikz}
 \usepackage{hyperref} % hyperref should be the last package loaded
 
 \DeclareMathOperator\cis{cis}
+
+\theoremstyle{definition}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{dfn}{Definition}[section]
 
 \pgfplotsset{every axis/.append style={
   axis x line=middle,    % put the x axis in the middle
@@ -966,17 +985,19 @@ Recall: to divide complex numbers, we multiply the numerator and denominator by 
 	&= \frac{r_1}{r_2}\cis(\theta_1-\theta_2
 \end{alignat*}
 \section{Vectors}
+\subsection{Basic Definitions}
 Vectors have:
 \begin{itemize}
 	\item initial point (tail)
 	\item terminal point (tip)
 \end{itemize}
+\diagram[0.6]{vector}
 The \textbf{magnitude} of a vector $\vec u$ is denoted by $| \vec u |$.
 
 \bigskip \noindent
 \textbf{Free vector}: a vector whose position is not fixed.
 
-\subsection{Vector Equality (definition)}
+\subsubsection{Vector Equality (definition)}
 Two vector are equal if and only if:
 \begin{itemize}
 	\item they have the same magnitude
@@ -984,15 +1005,21 @@ Two vector are equal if and only if:
 \end{itemize}
 we write $\vec u = \vec v$ if they are equal.
 
-\subsection{Vector Addition (definition)}
-Place the tail of $\vec v$ on the tip of $\vec u$. $\vec u + \vec v$ is defined as the vector from the tail of $\vec u$ to the tip of $\vec v$. $\vec u + \vec v$ is called the \emph{sum} or \emph{resultant} of $\vec u$ and $\vec v$.
+\subsubsection{Vector Addition (definition)}
+Place the tail of $\vec v$ on the tip of $\vec u$. $\vec u + \vec v$ is defined as the vector from the tail of $\vec u$ to the tip of $\vec v$.
+\diagram{vector-add}
 
 Or, you can use the parallelogram law.
 
-\subsection{Angles between Vectors}
-The angle between two vectors is the angle formed when the vectors are placed \emph{tail to tail}.
+\diagram{vector-parallelogram}
 
-\subsection{Opposite}
+$\vec u + \vec v$ is called the \textbf{sum} or \textbf{resultant} of $\vec u$ and $\vec v$.
+
+\subsubsection{Angles between Vectors}
+The angle between two vectors is the angle formed when the vectors are placed \emph{tail to tail}.
+\diagram{vector-angle}
+
+\subsubsection{Opposite}
 The \emph{opposite} of $\vec u$ is a vector with the same magnitude but exactly opposite direction. The opposite of $\vec u$ is denoted by $- \vec u$. The sum of a vector and its opposite is a vector with zero magnitude. This vector is called a \emph{zero vector} or $\vec 0$.
 
 \begin{equation}
@@ -1000,17 +1027,377 @@ The \emph{opposite} of $\vec u$ is a vector with the same magnitude but exactly 
 \end{equation}
 A zero vector has indeterminate direction and magnitude 0.
 
-\subsection{Vector Subtraction}
+\subsubsection{Vector Subtraction}
 Vector subtraction is defined as ``adding the opposite''.
 \begin{equation}
 	\vec u - \vec v = \vec u + ( - \vec v), \quad \textrm{ by definition}
 \end{equation}
 It can also be illustrated as:
+\diagram[0.4]{vector-subtract}
 
+\subsubsection{Unit Vector}
+A unit vector is a vector with magnitude 1.
+A unit vector in the direction of any vector $\vec u$ can be found by dividing $\vec u$ by its magnitude.
+\begin{equation}
+	\hat u = \frac{\vec u}{|\vec u|}
+\end{equation}
+where $\hat u$ is a unit vector.
+
+\subsubsection{Properties of Vector Addition}
+\begin{gather}
+	\vec u + \vec v = \vec v + \vec u \\
+	\vec u - \vec v = \vec u + ( - \vec v ) \\
+	\vec u + ( - \vec u ) = \vec 0 \\
+	\vec u + ( \vec v + \vec w ) = ( \vec u + \vec v ) + \vec w
+\end{gather}
+
+\subsubsection{Multiplying Vectors by Scalars}
+For vector $\vec u$ and real number $c$, the \textbf{scalar multiple of $\vec u$ by $c$} is a vector with the following characteristics:
+
+\begin{tabular}{l l}
+	magnitude: & $|c| \times |\vec u|$ \\
+	direction: & if $c > 0$, same as that of $\vec u$ \\
+	           & if $c < 0$, opposite to that of $\vec u$
+\end{tabular}
+
+This vector is denoted by $c \vec u$.
+
+\subsubsection{Properties of Scalar Multiplication}
+For vectors $\vec u$ and $\vec v$, and scalars $a$ and $b$,
+
+\begin{gather}
+	a ( \vec u + \vec v ) = a \vec u + a \vec v \\
+	( a + b ) \vec u = a \vec u + b \vec u \\
+	(ab) \vec u = a (b\vec u)
+\end{gather}
+
+\subsection{Forces}
+To describe a force, it is necessary to state its:
+\begin{itemize}
+	\item direction
+	\item magnitude
+	\item the point at which it is applied
+\end{itemize}
+Note that a force is \emph{not} a free vector.
+
+The \textbf{resultant} is the sum of the vectors of the forces that are applied at the same point.
+The \textbf{equilibrant} is the opposite force to the resultant. It is the force that would exactly counterbalance the resultant.
+
+\subsubsection{Relative Velocities}
+All velocites are relative to something else. We call this reference point a \textbf{frame of reference}.
+
+The velocity of an object A relative to object B is 
+\begin{equation}
+	\vec v_A - \vec v_B
+\end{equation}
+\begin{tabular}[]{l l}
+	where $\vec v_A$ & is the velocity of $A$ and \\
+	      $\vec v_B$ & is the velocity of $B$.
+\end{tabular}
+
+\subsection{Theorems}
+\begin{dfn}
+	A \textbf{linear combination} of vectors $\vec u$ and $\vec v$ is a vector $\vec w$ of the form
+	\begin{equation}
+		\vec w = c \vec u + d\vec v
+	\end{equation}
+	where $c$ and $d$ are scalars
+\end{dfn}
+
+\begin{dfn}
+	Vectors $\vec u_1, \vec u_2, \vec u_3, \dots, \vec u_n$ are \textbf{linearly dependent} if there exist scalars $a_1, a_2, a_3, \dots , a_n$ not all zero such that
+	\begin{equation}
+		a_1 \vec u_1 + a_2\vec u_2 + a_3\vec u_3 + \dots + a_n\vec u_n = \vec 0
+	\end{equation}
+\end{dfn}
+
+\begin{thm}
+	For two vectors this means
+	\begin{equation}
+		\vec u_1 = k\vec u_2
+	\end{equation}
+	for some scalar $k$.
+\end{thm}
+
+\begin{thm}
+	For three vectors, they are linearly dependent if and only if at least one can be written as a linear combination of the other two.
+\end{thm}
+
+\begin{dfn}
+	Two vectors are \textbf{co-linear} if they lie on a straight line when placed tip to tail.
+\end{dfn}
+The following are all equivalent statements:
+\begin{itemize}
+	\item $\vec u$ and $\vec v$ are parallel.
+	\item $\vec u$ and $\vec v$ are linearly dependent.
+	\item $\vec u$ and $\vec v$ are co-linear
+	\item $\vec u$ is a scalar multiple of $\vec v$.
+\end{itemize}
+
+\begin{dfn}
+	Vectors are \textbf{coplanar} if they lie on a plane when they are arranged tail-to-tail.
+\end{dfn}
+
+\begin{thm}
+	If three vectors are linearly dependent, then they are coplanar.
+\end{thm}
+
+The following statements are all equivalent:
+\begin{itemize}
+	\item $\vec u$, $\vec v$ and $\vec w$ are linearly dependent.
+	\item at least one of teh vectors can be written as a linear combination of the other two.
+	\item $\vec u$, $\vec v$ and $\vec w$ are coplanar.
+\end{itemize}
+
+\begin{dfn}
+	Vectors $\vec u_1, \vec u_2, \vec u_3, \dots , \vec u_n$ are \textbf{linearly independent} if the only linear combination of those vectors that produces the zero vector is 
+	\begin{equation}
+		0\vec u + 0\vec u_2 + 0\vec u_3 + \dots + 0\vec u_n = \vec 0
+	\end{equation}
+\end{dfn}
+
+\begin{dfn}
+	Vectors that lie in the same plane are called \textbf{planar vectors}.
+\end{dfn}
+
+\begin{dfn}
+	Two planar vectors form a \textbf{basis for a plane} if every vector in the plane can be written as a linear combination of the two vectors.
+\end{dfn}
+
+\begin{thm}
+	Any two linearly independent vectors form a basis for the plane in which they lie.
+\end{thm}
+The following are all equivalent statements:
+\begin{itemize}
+	\item $\vec u$ and $\vec v$ form a basis for the plane.
+	\item $\vec u$ and $\vec v$ are linearly independent.
+\end{itemize}
+
+\begin{dfn}
+	Three vectors form a \textbf{basis for a space} if every vector in that space can be written as a linear combination of the three vectors.
+\end{dfn}
+
+\begin{thm}
+	Any three linearly independent vectors form a basis for the space in which they exist.
+\end{thm}
+
+\subsection{Algebraic Vectors}
+\begin{dfn}
+	A \textbf{position vector} for a point $P$, with respect to the origin $O$, is the fixed vector $\overrightarrow{OP}$.
+\end{dfn}
+\subsubsection{Vectors in a Plane}
+\noindent
+Every vector in the plane can be written in \textbf{component form}:
+\begin{equation*}
+	\overrightarrow{OP} = ( a, b )
+\end{equation*}
+The \textbf{unit vectors} are defined as 
+\begin{equation}
+	\hat i = (1,0) \qquad \hat j = (0,1)
+\end{equation}
+Every vector in a plane can also be written in \textbf{vector form}:
+\begin{equation*}
+	\overrightarrow{OP} = a \hat i + b \hat j
+\end{equation*}
+Thus
+\begin{equation}
+	(a,b) = a\hat i + b\hat j
+\end{equation}
+$a$ and $b$ are called the \textbf{components} or scalar components of $\overrightarrow{OP}$.
+\subsubsection{Vectors in Space}
+The convention for vectors in space is to use a \textbf{right-handed system}. To construct $x$-,$y$- and $z$-axes for space:
+\begin{enumerate}
+	\item Choose three mutually perpendicular lines intersecting at a point and call them the $x$-axis, $y$-axis and $z$-axis.
+	\item Choose a positive $x$ direction and positive $y$ direction. Then define the positive $z$ direction by curling the fingers of your right hand in the direction of a rotation from the positive $x$-axis to the positive $Y$-axis. The direction in which your thumb points is the positive $z$-direction.
+\end{enumerate}
+Every vector in space can be written in \textbf{component form}:
+\begin{equation*}
+	\pv{OP} = (a,b,c)
+\end{equation*}
+The \textbf{unit vectors} are defined as
+\begin{equation}
+	\hat i = (1,0,0) \qquad \hat j = (0,1,0) \qquad \hat k = (0,0,1)
+\end{equation}
+Every vector in space can also be written in \textbf{vector form}
+\begin{equation*}
+	\pv{OP} = a\ihat + b\jhat + c\khat
+\end{equation*}
+Thus
+\begin{equation}
+	(a,b,c) = a\ihat+b\jhat+c\khat
+\end{equation}
+$a$,$b$ and $c$ are called the \textbf{components} or scalar components of $\pv{OP}$.
+
+\subsubsection{Vector Operations in Component Form}
+\subsubsection*{Vector Equality}
+Given $\vec u = (u_1,u_2)$  and $\vec v = (v_1,v_2)$, $\vec u = \vec v$ if and only if
+\begin{equation*}
+	u_1 = v_1 \quad \textrm{and} \quad u_2 = v_2
+\end{equation*}
+Given $\vec u = (u_1,u_2,u_3)$  and $\vec v = (v_1,v_2,v_3)$, $\vec u = \vec v$ if and only if
+\begin{equation*}
+	u_1 = v_1 \quad \textrm{and} \quad u_2 = v_2 \quad \textrm{and} \quad u_3 = v_3
+\end{equation*}
+\subsubsection*{Vector Addition}
+Given $\vec u = (u_1,u_2)$  and $\vec v = (v_1,v_2)$ 
+\begin{equation*}
+	\vec u + \vec v = (u_1 + v_1, u_2 + v_2)
+\end{equation*}
+Given $\vec u = (u_1,u_2,u_3)$  and $\vec v = (v_1,v_2,v_3)$
+\begin{equation*}
+	\vec u + \vec v = (u_1 + v_1, u_2 + v_2, u_3 + v_3)
+\end{equation*}
+
+\subsubsection*{Scalar Multiplication}
+Given $\vec u = (u_1,u_2)$  and $k \in \R$
+\begin{equation*}
+	k\vec u = (ku_1,ku_2)
+\end{equation*}
+Given $\vec u = (u_1,u_2,u_3)$  and $k \in \R$
+\begin{equation*}
+	k\vec u = (ku_1,ku_2,ku_3)
+\end{equation*}
+
+\subsubsection*{Vector Subtraction}
+Given $\vec u = (u_1,u_2)$ and $\vec v = (v_1,v_2)$
+\begin{equation*}
+	\vec u - \vec v = (u_1-v_1, u_2-v_2)
+\end{equation*}
+Given $\vec u = (u_1,u_2,u_3)$ and $\vec v = (v_1,v_2,v_3)$
+\begin{equation*}
+	\vec u - \vec v = (u_1-v_1, u_2-v_2, u_3-v_3)
+\end{equation*}
+
+\subsubsection*{Length of a Vector}
+Given $\vec u = (u_1,u_2)$, then $|\vec u| = \sqrt{u_1^2 + u_2^2}$. \\
+Given $\vec u = (u_1,u_2,u_3)$, then $|\vec u| = \sqrt{u_1^2 + u_2^2 + u_3^2}$.
+
+\subsubsection*{Vectors between two points}
+Given $P_1 = (x_1,y_1)$ and $P_2 = (x_2,y_2)$, then
+\begin{equation*}
+	\pv{P_1P_2} = (x_2 - x_1, y_2 - y_1)
+\end{equation*}
+Given $P_1 = (x_1,y_1,z_1)$ and $P_2 = (x_2,y_2,z_2)$, then
+\begin{equation*}
+	\pv{P_1P_2} = (x_2 - x_1, y_2 - y_1, z_2 - z_1)
+\end{equation*}
+
+\subsection{Dot Product (scalar product)}
+For non-zero vectors $\vec u$ and $\vec v$ we define the dot product between $\vec u$ and $\vec v$ as
+\begin{equation}
+	\vec u \cdot \vec v = |\vec u||\vec v| \cos \theta
+\end{equation}
+where $\theta$ is the angle between $\vec u$ and $\vec v$ and $0 \le \theta \le \pi$. i.e. $\theta$ is the smaller angle.
+
+If $\vec u = \vec 0$ or $\vec v = \vec 0$, then it is defined as $\vec u \cdot \vec v = 0$.
+
+\subsubsection{Dot Product in Component Form}
+For $\vec u = (u_1, u_2)$ and $\vec v = (v_1,v_2)$,
+\begin{equation}
+	\vec u \cdot \vec v = u_1v_1 + u_2v_2
+\end{equation}
+For $\vec u = (u_1, u_2, u_3)$ and $\vec v = (v_1,v_2,v_3)$,
+\begin{equation}
+	\vec u \cdot \vec v = u_1v_1 + u_2v_2 + u_3v_3
+\end{equation}
+
+\subsubsection{Properties of the Dot Product}
+\begin{enumerate}
+	\item For non-zero vectors $\vec u$ and $\vec v$, $\vec u$ and $\vec v$ are perpendicular if and only if $\vec u \cdot \vec v = 0$.
+	\item For any vector $\vec u$,
+		\begin{equation*}
+			\vec u \cdot \vec u = |\vec u|^2
+		\end{equation*}
+	\item For any vectors $\vec u$ and $\vec v$,
+		\begin{equation*}
+			\vec u \cdot \vec v = \vec v \cdot \vec u
+		\end{equation*}
+		In other words, the dot product is \textbf{Commutative}.
+	\item For any vectors $\vec u$ and $\vec v$, and scalar $k \in \R$,
+		\begin{equation*}
+			(k\vec u)\cdot\vec v = k(\vec u \cdot \vec v)
+		\end{equation*}
+		In other words, the dot product is \textbf{Associative}.
+	\item For any vectors $\vec u$, $\vec v$ and $\vec w$,
+		\begin{equation*}
+			\vec u \cdot ( \vec v + \vec w ) = \vec u \cdot \vec v + \vec u \cdot \vec w
+		\end{equation*}
+		In other words, the dot product is \textbf{Distributive}
+\end{enumerate}
+
+\subsubsection{Applications of the Dot Product}
+\subsubsection*{Work}
+We define work done in moving an object through a displacement $\vec s$, under an applied force $\vec f$ acting at an angle $\theta$ as
+\begin{alignat}{2}
+	w &= |\vec f||\vec s|\cos \theta \\
+		&= \vec f \cdot \vec s
+\end{alignat}
+Note that $\vec s$ must be in metres and $\vec f$ in Newtons. \emph{Don't forget to convert to metres.}
+
+\subsection{Cross Product}
+For non-zero vectors $\vec u$ and $\vec v$ we define the cross product between $\vec u$ and $\vec v$ as
+\begin{equation}
+	\vec u \times \vec v = |\vec u||\vec v|\sin \theta \hat n
+\end{equation}
+where $\theta$ is the angle between $\vec u$ and $\vec v$ such that $0 \le \theta \le \pi$ and $\hat n$ is a unit vector perpendicular to both $\vec u$ and $\vec v$ such that $\vec u$, $\vec v$ and $\hat n$ form a right-handed system.
+
+The magnitude of the cross product is not affected by $\hat n$, since it is a unit vector. So, the magnitude is
+\begin{equation}
+	|\vec u \times \vec v| = |\vec u||\vec v|\sin \theta
+\end{equation}
+which looks similar to the dot product.
+
+\bigskip \noindent
+To find the direction of $\hat n$:
+\begin{enumerate}
+	\item Wrist at tail, fingers at tip of $\vec u$.
+	\item Curl fingers towards $\vec v$ (through the shorter angle). Thumb points in direction of $\vec u \times \vec v$.
+\end{enumerate}
+
+\subsubsection{Properties of Cross Product}
+\begin{enumerate}
+	\item For non-zero vectors $\vec u$ and $\vec v$, they are collinear if and only if $\vec u \times \vec v = \vec 0$.
+	\item For any vectors $\vec u$ and $\vec v$
+		\begin{equation*}
+			\vec u \times \vec v = - \vec v \times \vec u
+		\end{equation*}
+		which means the cross product is \textbf{not Commutative}. But note that $|\vec u \times \vec v| = |\vec v \times \vec u|$, which means their magnitudes are commutative, which makes sense because they are just pointing in opposite directions.
+	\item  For any vectors $\vec u$ and $\vec v$, and scalar $k \in \R$,
+		\begin{equation*}
+			(k\vec u) \times \vec v = k (\vec u \times \vec v) = \vec u \times (k\vec v)
+		\end{equation*}
+		which means the cross product is \textbf{Associative}.
+	\item For any vectors $\vec u$, $\vec v$ and $\vec w$,
+		\begin{equation*}
+			\vec u \times ( \vec v + \vec w ) = \vec u \times \vec v + \vec u \times \vec w
+		\end{equation*}
+		which means the cross product is \textbf{Distributive}.
+\end{enumerate}
+
+\subsubsection{Cross Product in Component Form}
+\begin{align*}
+	\ihat \times \ihat &= \vec 0 & \ihat \times \jhat &= \khat & \jhat \times \ihat &= - \khat \\
+	\jhat \times \jhat &= \vec 0 & \jhat \times \khat &= \ihat & \khat \times \jhat &= - \ihat \\
+	\khat \times \khat &= \vec 0 & \khat \times \ihat &= \jhat & \ihat \times \khat &= - \jhat
+\end{align*}
+For two vectors $\vec u = (u_1,u_2,u_3)$ and $\vec v = (v_1,v_2,v_3)$,
+\begin{equation}
+	\vec u \times \vec v = (u_2v_3-u_3v_2)\ihat + (u_3v_1-u_1v_3)\jhat + (u_1v_2-u_2v_1)\khat
+\end{equation}
+\subsubsection*{Trick for finding cross product in component form}
+For two vectors $\vec u = (u_1,u_2,u_3)$ and $\vec v = (v_1,v_2,v_3)$,
+\begin{enumerate}
+	\item Write out the first vector twice, then write the second vector twice underneath it.
+	\item Chop off the ends.
+	\item Take diagonal products as shown below and subtract them. To obtain each component of $\vec u \times \vec v$, move one column to the right.
+\end{enumerate}
+
+Image
 
 \section{IB Conventions}
 \begin{enumerate}
 	\item The set of Natural numbers includes 0. i.e. $\mathbb{N} = \{0,1,2,\dots\}$.
 	\item All polar answers in $\cis$ notation must be expressed with argument $\theta$ such that $\pi\le\theta\le\pi$. But answers in Euler's form must have argument $\theta$ such that $0 \le \theta \le 2 \pi$. For ex. $2e^{-\pi i}$ is not allowed, but $2\cis(-\pi)$ is allowed.
 \end{enumerate}
+
 \end{document}
