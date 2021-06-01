@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass{report}
 
 \newcommand\R{\mathbb{R}}
 \newcommand\Z{\mathbb{Z}}
@@ -24,14 +24,17 @@
 \usepackage{graphicx}
 \graphicspath{ {./images/} }
 \usepackage{amsthm}
-\usepackage{tikz}
 \usepackage{hyperref} % hyperref should be the last package loaded
 
 \DeclareMathOperator\cis{cis}
 
 \theoremstyle{definition}
 \newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}{Corollary}[thm]
 \newtheorem{dfn}{Definition}[section]
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+	            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
 
 \pgfplotsset{every axis/.append style={
   axis x line=middle,    % put the x axis in the middle
@@ -64,6 +67,8 @@
 \tableofcontents
 \newpage
 \pagenumbering{arabic}
+
+\chapter{Course 1 - MCR3U7}
 
 \section{Review Unit}
 
@@ -984,6 +989,9 @@ Recall: to divide complex numbers, we multiply the numerator and denominator by 
 	&= \frac{(r_1\cis\theta_1)(r_2\cis(-\theta_2))}{r^2} \\
 	&= \frac{r_1}{r_2}\cis(\theta_1-\theta_2
 \end{alignat*}
+
+\chapter{Course 2 - MDM4U7}
+
 \section{Vectors}
 \subsection{Basic Definitions}
 Vectors have:
@@ -1334,7 +1342,7 @@ We define work done in moving an object through a displacement $\vec s$, under a
 \end{alignat}
 Note that $\vec s$ must be in metres and $\vec f$ in Newtons. \emph{Don't forget to convert to metres.}
 
-\subsection{Cross Product}
+\subsection{Cross Product (vector product)}
 For non-zero vectors $\vec u$ and $\vec v$ we define the cross product between $\vec u$ and $\vec v$ as
 \begin{equation}
 	\vec u \times \vec v = |\vec u||\vec v|\sin \theta \hat n
@@ -1382,7 +1390,8 @@ To find the direction of $\hat n$:
 \end{align*}
 For two vectors $\vec u = (u_1,u_2,u_3)$ and $\vec v = (v_1,v_2,v_3)$,
 \begin{equation}
-	\vec u \times \vec v = (u_2v_3-u_3v_2)\ihat + (u_3v_1-u_1v_3)\jhat + (u_1v_2-u_2v_1)\khat
+	\vec u \times \vec v = \underset{\circled{1}}{(u_2v_3-u_3v_2)}\ihat + \underset{\circled{2}}{(u_3v_1-u_1v_3)}\jhat + \underset{\circled{3}}{(u_1v_2-u_2v_1)}\khat
+	\label{cross-product}
 \end{equation}
 \subsubsection*{Trick for finding cross product in component form}
 For two vectors $\vec u = (u_1,u_2,u_3)$ and $\vec v = (v_1,v_2,v_3)$,
@@ -1391,9 +1400,63 @@ For two vectors $\vec u = (u_1,u_2,u_3)$ and $\vec v = (v_1,v_2,v_3)$,
 	\item Chop off the ends.
 	\item Take diagonal products as shown below and subtract them. To obtain each component of $\vec u \times \vec v$, move one column to the right.
 \end{enumerate}
+\diagram[0.7]{cross-product}
+where the circled numbers correspond to the circled numbers in \eqref{cross-product}.
 
-Image
+\paragraph{Triple Scalar Product} is defined as
+\begin{equation}
+	( \vec u \times \vec v ) \cdot \vec w
+\end{equation}
 
+\paragraph{Triple Vector Product} is defined as
+\begin{equation}
+	( \vec u \times \vec v ) \times \vec w
+\end{equation}
+
+\subsubsection{Cross Product Theorems}
+\begin{thm}
+	For any non-zero vectors $\vec u$, $\vec v$ and $\vec w$, $(\vec u \times \vec v) \cdot \vec w = 0$ if and only if $\vec u$, $\vec v$ and $\vec w$ are \textbf{coplanar}.
+\end{thm}
+\begin{cor}
+	for any non-zero vectors $\vec u$, $\vec v$ and $\vec w$, if $(\vec u \times \vec v) \cdot \vec w \ne 0$, then $\vec u$, $\vec v$ and $\vec w$ are not coplanar and they form a basis for space.
+\end{cor}
+
+\subsubsection{Applications of Cross Product}
+\subsubsection*{Area of a Parallelogram}
+\diagram{parallelogram}
+\begin{alignat}{2}
+	\mathrm{Area} &= \mathrm{base} \times \mathrm{height} \nonumber \\
+								&= |\vec u| \times |\vec v| \sin \theta \nonumber \\
+								&= |\vec u| |\vec v| \sin \theta \nonumber \\
+	\mathrm{Area} &= |\vec u \times \vec v|
+\end{alignat}
+This method can be extended to find the area of a triangle.
+\diagram{triangle}
+\begin{alignat}{2}
+	\mathrm{Area}_\Delta &= \frac{1}{2}(\textrm{Area of the parallelogram}) \nonumber \\
+	\mathrm{Area}_\Delta &= \frac{1}{2} \left|\vec u \times \vec v\right|
+\end{alignat}
+
+\subsubsection*{Volume of a Parallelepiped}
+\diagram{parallelepiped}
+\begin{alignat}{2}
+	\mathrm{Volume} &= \left|(\vec u \times \vec v) \cdot \vec w\right|
+	\label{parallelepiped}
+\end{alignat}
+Note that the volume doesn't depend on which vectors are chosen as the ones forming the base, which makes sense because \eqref{parallelepiped} has an absolute value.
+
+\subsubsection*{Torque (or Moment)}
+We define the torque (or moment) $\vec T$ of an applied force as
+\begin{alignat}{2}
+	\vec T &= \vec r \times \vec f \\
+				 &= |\vec r||\vec f| \sin \theta \hat n
+\end{alignat}
+\begin{tabularx}{\textwidth}{!{\extracolsep{\fill}}>{\hsize=.2\hsize}X >{\hsize=1.8\hsize}X}
+	where & $\vec f$ is the applied force. \\
+				& $\vec r$ is the vector determined by the lever arm acting from the axis of rotation. \\
+				& $\theta$ is the angle between the force and the lever arm. \\
+				& $\hat n$ is a unit vector perpendicular to both $\vec r$ and $\vec f$ such that they form a right-handed system.
+\end{tabularx}
 \section{IB Conventions}
 \begin{enumerate}
 	\item The set of Natural numbers includes 0. i.e. $\mathbb{N} = \{0,1,2,\dots\}$.
