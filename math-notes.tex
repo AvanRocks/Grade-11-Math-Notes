@@ -1,5 +1,4 @@
 \documentclass{report}
-
 \newcommand\R{\mathbb{R}}
 \newcommand\Z{\mathbb{Z}}
 \newcommand\pv[1]{\overrightarrow{#1}}
@@ -1457,6 +1456,148 @@ We define the torque (or moment) $\vec T$ of an applied force as
 				& $\theta$ is the angle between the force and the lever arm. \\
 				& $\hat n$ is a unit vector perpendicular to both $\vec r$ and $\vec f$ such that they form a right-handed system.
 \end{tabularx}
+
+\subsection{Equations of Lines in Planes and Space}
+
+\paragraph{Vector Equation of a Line}
+\begin{alignat}{2}
+	\vec r &= \vec p + t \vec d, \quad t \in \R 
+	\\
+	\begin{pmatrix}
+		x \\ y \\ z
+	\end{pmatrix} 
+	&= 
+	\begin{pmatrix}
+		x_0 \\ y_0 \\ z_0
+	\end{pmatrix}
+	+ t
+	\begin{pmatrix}
+		d_1 \\ d_2 \\ d_3
+	\end{pmatrix}
+	, t \in \R
+\end{alignat}
+where $\vec r$ is the position vector of any point on the line, $\vec p$ is the position vector of a particular point on the line and $\vec d$ is the \textbf{direction vector} for the line.
+
+\paragraph{Parametric Equation of a Line}
+\begin{alignat}{2}{}
+	x &= x_0 + td_1 \\
+	y &= y_0 + td_2 \\
+	z &= z_0 + td_3
+\end{alignat}
+This system of equations are found by equating the components of the vectors in the vector equation of a line. $d_1$, $d_2$ and $d_3$ are called the \textbf{direction numbers} of the line.
+
+\paragraph{Symmetric Equation of a Line}
+\begin{alignat}{2}{}
+	\frac{x-x_1}{d_1} = \frac{y-y_0}{d_2} = \frac{z-z_0}{d_3}, \quad d_1,d_2,d_3 \ne 0
+\end{alignat}
+This equation is found by rearranging the parametric equation of a line to solve for $t$ and equating the two expressions for $t$. If any of the direction numbers are $0$, it is not possible to write a symmetric equation of the line.
+
+\paragraph{Scalar Equation of a Line (or Cartesian Equation)}
+\begin{equation}
+	Ax+By+C = 0
+\end{equation}
+where $A \in \Z^+$ and $B,C \in \Z$.
+
+\bigskip
+\noindent
+A scalar equation of the line through $P_0(x_0,y_0)$ with normal $\vec n = (n_1,n_2)$ is
+\begin{equation}
+	n_1x + n_2y + c = 0
+\end{equation}
+where $c$ can be determined by plugging in values of $x_0$ and $y_0$.
+
+\bigskip \noindent
+To get the normal from a direction vector, or the direction vector from a normal, swap the components switch the sign of one of them:
+\begin{alignat*}{2}
+	\vec n &= (n_1,n_2) = (-d_2, d_1) = (d_2, -d_1) \\
+	\vec d &= (d_1,d_2) = (-n_2, n_1) = (n_2, -n_1)
+\end{alignat*}
+Also the relationship between slope $m$ and normal vector $\vec n = (n_1,n_2)$:
+\begin{equation*}
+	m = - \frac{n_1}{n_2}
+\end{equation*}
+
+\subsubsection{Intersection of Lines}
+\paragraph{2-space}
+\begin{itemize}
+	\item Parallel lines - distinct (inconsistent linear system - no solution)
+	\item Parallel lines - coincident (consistent dependent system - infinite solutions)
+	\item Non-parallel lines - intersect (consistent independent system - one solution)
+\end{itemize}
+\paragraph{3-space}
+\begin{itemize}
+	\item Parallel lines - distinct (inconsistent linear system - no solution)
+	\item Parallel lines - coincident (consistent dependent system - infinite solutions)
+	\item Non-parallel lines - intersect (consistent independent system - one solution)
+	\item Non-parallel lines - Skew lines that do not intersect (lie in different planes)
+\end{itemize}
+When finding a point of intersection of two lines $l_1 = (x_1,y_1) + t(d_1,_d2)$ and $l_2 = (x_2,y_2) + s(d_3,d_4)$ in space, you must verify that the values of $s$ and $t$ found satisfy all three of the parametric equations for each line. This is since the lines could be skew lines.
+
+\subsubsection{Projections}
+\diagram{projection}
+\begin{equation}
+	|\mathrm{proj}_{\vec u} \vec v | = |\overrightarrow{AB}| = |\vec v| \cos \theta = \frac{\vec u \cdot \vec v}{|\vec u|}
+\end{equation}
+
+\subsubsection{Distance}
+\paragraph{2D}
+In 2D you can find the distance from:
+\begin{itemize}
+	\item a point to a line
+	\item a line to a line (parallel lines)
+\end{itemize}
+
+\paragraph{3D}
+In 3D you can find the distance from:
+\begin{itemize}
+	\item a point to a line
+	\item a line to a line (parallel lines)
+	\item a line to a line (skew lines)
+\end{itemize}
+
+\bigskip \noindent
+You cannot find the distant between two lines if they are coincident or intersecting. Thus we can only find the distance between lines if they are
+\begin{itemize}
+	\item parallel, or
+	\item skew lines
+\end{itemize}
+
+\subsubsection{In a Plane}
+\subsubsection*{Line to a Point (in a Plane)}
+Formula for the distance from line $Ax + By + C = 0$ and point $(x_1,y_1)$. Or in vector form, line with normal $\vec n$ and point $P_2$ (on the line) to the point $P_1$ (not on the line).
+\begin{alignat}{2}{}
+	D &= \frac{|Ax_1+By_1+C|}{\sqrt{A^2+B^2}} \textrm{ or } \\
+	D &= \frac{|\overrightarrow{P_1P_2} \cdot \vec n |}{|\vec n|}
+\end{alignat}
+\subsubsection*{Line to a Parallel Line (in a Plane)}
+To find the distance between two parallel lines in a plane, you can use the formulas for the distance between a line to a point. Simply pick a point on one line and find the distance between that point and the other line.
+
+\bigskip \noindent
+There is also a shortcut formula if the lines are given in scalar form.
+\begin{equation}
+	D = \frac{|C_1 - C_2|}{\sqrt{A^2+B^2}}
+\end{equation}
+where the lines are $Ax+By+C_1=0$ and $Ax+By+C_2=0$. Notice that the coefficents of $x$ and $y$, i.e. $A$ and $B$ are the same because the lines share a normal because the lines are parallel.
+
+\subsubsection{In Space}
+\subsubsection*{Line to a Point (in Space)}
+Formula for the distance from line with direction vector $\vec d$ and a point $P_2$ (on the line) to a point $P_1$ not on the line.
+\begin{alignat*}{2}{}
+	D = \frac{|\overrightarrow{P_1P_2} \times \vec d |}{|\vec d|}
+\end{alignat*}
+
+\subsubsection{Line to a Parallel Line (in Space)}
+Use the formula for the distance between a line to a point in space. Simply pick a point $P_1$ on one line and find the distance between $P_1$ to the other line. This works since both lines are parallel.
+
+\subsubsection{Line to a Line (Skew lines)}
+\begin{equation}
+	\frac{|\overrightarrow{P_1P_2} \cdot \vec n|}{|\vec n|}
+\end{equation}
+where $\vec n$ is a vector perpendicular to both lines found by taking the cross product of the direction vectors of the two lines. i.e.
+\begin{equation*}
+	\vec n = \vec d_1 \times \vec d_2
+\end{equation*}
+
 \section{IB Conventions}
 \begin{enumerate}
 	\item The set of Natural numbers includes 0. i.e. $\mathbb{N} = \{0,1,2,\dots\}$.
