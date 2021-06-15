@@ -51,7 +51,7 @@
 
 \pgfplotsset{compat=1.17}
 \usepgfplotslibrary{external}
-\tikzexternalize
+\tikzexternalize[prefix=./cache/]
 
 \title{Grade 11 Quad 4 Math Notes}
 \author{Avaneesh Kulkarni}
@@ -862,7 +862,7 @@ The SI is used as the smallest tick mark when graphing.
 	\item Graph using the pattern for $\sin$ or $\cos$. Remember to account for reflections and phase shift.
 \end{enumerate}
 
-\includepdf[pagecommand={}]{finding-equation-of-sin-function.pdf}
+\includepdf[pagecommand={}]{images/finding-equation-of-sin-function.pdf}
 
 \section{General Solutions to Trig Problems}
 Solutions come in multiples of the period, so the final answer would look like:
@@ -1444,6 +1444,17 @@ This method can be extended to find the area of a triangle.
 \end{alignat}
 Note that the volume doesn't depend on which vectors are chosen as the ones forming the base, which makes sense because \eqref{parallelepiped} has an absolute value.
 
+\subsubsection{Volume of a Tetrahedron}
+\begin{alignat}{2}
+	\mathrm{Volume} &= \frac{1}{6} \left|(\vec u \times \vec v) \cdot \vec w\right|
+\end{alignat}
+This is since the volume of a tetrahedron, $V$ is $\frac{1}{3}$ of the volume of the triangular prism enclosing it. Also, the volume fo a triangular prism is $\frac{1}{2}$ of the volume of the enclosing parallelepiped (you can see this by cutting the parallelpiped in half in a particular way).
+
+In general, the volume, $V$, of a pyramid is $\frac{1}{3}$ of the volume of the prism enclosing it.
+\begin{equation*}
+	\mathrm{V} = \frac{\textrm{Area of Base} \times \mathrm{height}}{3}
+\end{equation*}
+
 \subsubsection*{Torque (or Moment)}
 We define the torque (or moment) $\vec T$ of an applied force as
 \begin{alignat}{2}
@@ -1459,7 +1470,7 @@ We define the torque (or moment) $\vec T$ of an applied force as
 
 \subsection{Equations of Lines in Planes and Space}
 
-\paragraph{Vector Equation of a Line}
+\subsubsection{Vector Equation of a Line}
 \begin{alignat}{2}
 	\vec r &= \vec p + t \vec d, \quad t \in \R 
 	\\
@@ -1478,7 +1489,7 @@ We define the torque (or moment) $\vec T$ of an applied force as
 \end{alignat}
 where $\vec r$ is the position vector of any point on the line, $\vec p$ is the position vector of a particular point on the line and $\vec d$ is the \textbf{direction vector} for the line.
 
-\paragraph{Parametric Equation of a Line}
+\subsubsection{Parametric Equation of a Line}
 \begin{alignat}{2}{}
 	x &= x_0 + td_1 \\
 	y &= y_0 + td_2 \\
@@ -1486,13 +1497,14 @@ where $\vec r$ is the position vector of any point on the line, $\vec p$ is the 
 \end{alignat}
 This system of equations are found by equating the components of the vectors in the vector equation of a line. $d_1$, $d_2$ and $d_3$ are called the \textbf{direction numbers} of the line.
 
-\paragraph{Symmetric Equation of a Line}
+\subsubsection{Symmetric Equation of a Line (or Cartesian Equation)}
 \begin{alignat}{2}{}
 	\frac{x-x_1}{d_1} = \frac{y-y_0}{d_2} = \frac{z-z_0}{d_3}, \quad d_1,d_2,d_3 \ne 0
 \end{alignat}
 This equation is found by rearranging the parametric equation of a line to solve for $t$ and equating the two expressions for $t$. If any of the direction numbers are $0$, it is not possible to write a symmetric equation of the line.
 
-\paragraph{Scalar Equation of a Line (or Cartesian Equation)}
+\subsubsection{Scalar Equation of a Line (in a Plane)}
+A line in space has no scalar equation. Only lines in a plane can be described by a scalar equation.
 \begin{equation}
 	Ax+By+C = 0
 \end{equation}
@@ -1517,14 +1529,20 @@ Also the relationship between slope $m$ and normal vector $\vec n = (n_1,n_2)$:
 	m = - \frac{n_1}{n_2}
 \end{equation*}
 
-\subsubsection{Intersection of Lines}
-\paragraph{2-space}
+\subsubsection{Meaning of Cartesian Equation}
+\begin{tabularx}{\textwidth}{l X}
+Line in a plane, & Cartesian means symmetric. \\
+	Line in space, & Cartesian means symmetric (it doesn't even have a scalar equation, so no confusion). \\
+	Plane, & Cartesian means scalar (a plane doesn't have a symmetric equation).
+\end{tabularx}
+	\subsection{Intersection of Lines}
+\subsubsection{2-space}
 \begin{itemize}
 	\item Parallel lines - distinct (inconsistent linear system - no solution)
 	\item Parallel lines - coincident (consistent dependent system - infinite solutions)
 	\item Non-parallel lines - intersect (consistent independent system - one solution)
 \end{itemize}
-\paragraph{3-space}
+\subsubsection{3-space}
 \begin{itemize}
 	\item Parallel lines - distinct (inconsistent linear system - no solution)
 	\item Parallel lines - coincident (consistent dependent system - infinite solutions)
@@ -1597,6 +1615,192 @@ where $\vec n$ is a vector perpendicular to both lines found by taking the cross
 \begin{equation*}
 	\vec n = \vec d_1 \times \vec d_2
 \end{equation*}
+
+\subsection{Equation of Planes}
+\paragraph{Vector Equation of a Plane}
+\begin{alignat}{2}{}
+	(x,y,z) = (x_0,y_0,z_0) + s(a_1,a_2,a_3) + t(b_1,b_2,b_3), \quad s,t \in R
+\end{alignat}
+
+\paragraph{Parametric Equation of a Plane}
+\begin{alignat}{2}{}
+	x &= x_0 + sa_1 + tb_1 \\
+	y &= y_0 + sa_2 + tb_2 \\
+	z &= z_0 + sa_3 + tb_3
+\end{alignat}
+Note that vector and parametric equations of a plane are not unique.
+
+\paragraph{Scalar Equation of a Plane (or Cartesian Equation)}
+\begin{equation}
+	Ax+By+Cz+D=0
+\end{equation}
+where the normal to the plane $\vec n = (A,B,C)$. The constant $D$ can be found by plugging in values of a point $P=(x,y,z)$ that lies on the plane. Note that this form of the scalar equation is unique, unlike others. Another two versions of the scalar equation are
+\begin{alignat}{2}{}
+	\vec n \cdot (\vec r - \vec a) &= 0 \\
+	\vec n \cdot \vec r &= \vec n \cdot \vec a
+\end{alignat}
+where $\vec r$ and $\vec a$ are the position vectors of two distinct points on the plane.
+
+\paragraph{Normal to a Plane}
+To find the normal vector $\vec n$ to the plane, take the cross product of two direction vectors of the plane.
+\begin{alignat}{2}{}
+	\vec n = \vec d_1 \times \vec d_2
+\end{alignat}
+where $\vec d_1$ and $\vec d_2$ are the two direction vectors of the plane. This vector $\vec n$ is perpendicular to every vector in the plane.
+
+\subsubsection{Useful Facts about Planes}
+\begin{itemize}
+	\item Two planes are parallel if and only if their normals are collinear.
+	\item Two planes are parallel and coincident if and only if they are parallel and they share a point.
+	\item A plane can be formed from two parallel distinct lines.
+	\item A plane can be formed from two non-parallel intersecting lines
+\end{itemize}
+
+
+\subsection{Distance for Planes}
+
+\subsubsection{Point to a Plane}
+\diagram{distance-from-point-to-plane}
+Formula for the distance between plane $Ax+By+Cz+D=0$ and point $P_1 (x_1,y_1,z_1)$, or in vector form, the distance between a plane which contains point $P$ (on the plane) and has normal $\vec n$ to point $P_1$ (not on the plane).
+\begin{alignat}{2}{}
+	D &= \frac{|\pv{P_1P}\cdot\vec n|}{|\vec n|} \\
+	D &= \frac{|Ax_1+By_1+Cz_1+D|}{\sqrt{A^2+B^2+C^2}}
+\end{alignat}
+
+\subsubsection{Plane to a Parallel Plane}
+Just pick a point $P$ on one plane and use the formula for the distance between a point and a plane to find the distance between the planes. If you are given the scalar equation, you can use the shortcut formula:
+\begin{alignat}{2}{}
+	D &= \frac{|D_1 - D_2|}{\sqrt{A^2+B^2+C^2}}
+\end{alignat}
+where $D_1$ and $D_2$ are the constants in the scalar equations of the planes.
+
+\subsubsection{Angle between a Line and a Plane}
+\diagram{angle-between-line-and-plane}
+\begin{alignat}{2}{}
+	\cos \phi = \frac{\vec n \cdot \vec d}{|\vec n||\vec d|}
+\end{alignat}
+To find the angle between the line and the plane (i.e. $\theta$), solve for $\phi$ and then subtract it from $90 \degree$. Or, another method is to use the fact that
+\begin{alignat}{2}{}
+	\cos \phi = \sin \theta
+\end{alignat}
+since $\theta = 90 \degree - \phi$. Using this fact, we obtain
+\begin{alignat}{2}{}
+	\theta = \sin^{-1}\left(\frac{\vec n \cdot \vec d}{|\vec n||\vec d|} \right)
+\end{alignat}
+
+
+
+\subsection{Intersection of Planes}
+
+\subsubsection{Intersection of a Line and a Plane}
+Given a line in parametric form
+\begin{alignat*}{2}{}
+	x &= 5 + t \\
+	y &= 2 - 2t \\
+	z &= 6t
+\end{alignat*}
+and a plane in scalar form, $4x+2y+z-6=0$, to find the point of intersection of the line and the plane, simply substitute the expressions for $x,y,z$ from the parametric equations of the line into the scalar equation of the plane and solve for $t$. Then sub the value of $t$ back in the parametric equations of the line to find the point of intersection. For ex.
+\begin{alignat*}{2}{}
+	4(5+t)+2(2-2t)+(6t)-6&=0
+	t&=3
+\end{alignat*}
+so the point of intersection is
+\begin{gather*}
+	(5+t,2-2t,6t) \\
+	(5+3,2-2(3),6(3)) \\
+	(8,-4,18)
+\end{gather*}
+
+\subsubsection{Intersection of two Planes}
+Two planes can be:
+\begin{itemize}
+	\item parallel and distinct
+	\item parallel and coincident
+	\item intersecting in a line
+\end{itemize}
+There are many methods to find the line of intersection, but I will show the best one. Suppose you want to find the line of intersection between these planes
+\begin{alignat*}{2}{}
+	&\pi_1 : 2x-2y+5z+10=0 \\
+	&\pi_2 : 2x+y-4z+7=0
+\end{alignat*}
+\begin{enumerate}
+	\item Eliminate a variable, say $x$.
+\begin{alignat*}{2}{}
+	&\pi_1 - \pi_2: -3y+9z+3=0 \\
+\end{alignat*}
+	\item Let $z=t$ and solve for $y$ in terms of $t$.
+\begin{alignat*}{2}{}
+	y=1+3t
+\end{alignat*}
+	\item Substitute the expression for $y$ and $z=t$ into either of the original equations of the planes.
+\begin{alignat*}{2}{}
+	&\pi_1 : 2x - 2 (1+3t) + 5(t) + 10 = 0
+\end{alignat*}
+	\item Solve for x in terms of $t$.
+\begin{alignat*}{2}{}
+	x = -4 + \frac{1}{2}t
+\end{alignat*}
+	\item Now you can write the parametric equation of the line of intersection.
+	\begin{alignat*}{2}{}
+		x &= -4 + \frac{1}{2}t \\
+		y &= 1 + 3t \\
+		z &= t
+	\end{alignat*}
+	\item You can scale $t$ by any value since it just corresponds to scaling the direction vector of the line. Let's scale it by 2 in order to eliminate the fraction.
+	\begin{alignat*}{2}{}
+		x &= -4 + t \\
+		y &= 1 + 6t \\
+		z &= 2t
+	\end{alignat*}
+\end{enumerate}
+And now you have a parametric equation of the line of intersection.
+
+You can also find the line of intersection by solving the system of equations using matrices. You will end up with a free variable which you should set to $t$ which will similarly lead to parametric equations for the line of intersection.
+
+\paragraph{A Useful Fact}
+The direction vector for the line of intersection of two planes is perpendicular to the normals of both of the two planes. 
+This follows from the fact that the direction vector of a line which lies on a plane is perpendicular to that plane's normal. Since the line of intersection lies on both planes, it is perpendicular to both the normals.
+This means the direction vector can be found by calculating the cross product of the two normal vectors
+\begin{align*}
+	\vec d = \vec n_1 \times \vec n_2
+\end{align*}
+where $\vec d$ is the direction vector of the line and $\vec n_1, \vec n_2$ are the normals of the two planes.
+
+\subsubsection{Angle between two Planes}
+Formula for the angle between two planes
+\begin{equation}
+	% \theta = \frac{|\vec n_1 \cdot \vec n_2|}{|\vec n_1||\vec n_2|}
+	\cos \theta = \frac{\vec n_1 \cdot \vec n_2}{|\vec n_1||\vec n_2|}
+\end{equation}
+where $\vec n_1$ and $\vec n_2$ are the normal vectors of the two planes.
+
+Note that planes make 2 angles. The other angle is simply $180 \degree - \theta$. If a question asks for the acute, find the acute one.
+\subsection{Operations on Matrices}
+There are 3 valid manipulations on matrices. These will be used to convert matrices to reduced row echelon form.
+\begin{enumerate}
+	\item Interchange two rows
+	\item Multiply a row by a non-zero constant
+	\item Add a scalar multiple of one row to any other row
+\end{enumerate}
+\section{Counting}
+\subsection{Factorial}
+Note that $0 ! = 1$, by definition.
+
+\subsection{Permutations}
+$nPr$ or $P(n,r)$ is read as ``n perm r''.
+\begin{equation}
+	nPr = \frac{n!}{(n-r)!}
+\end{equation}
+
+\subsubsection{Permutations with Repetition}
+The number of permutations of $n$ objects of which $a$ objects are alike and another $b$ objects are alike and another $c$ objects are alike, etc is
+\begin{equation*}
+	\frac{n!}{a!b!c!\dots}
+\end{equation*}
+
+
+\paragraph{Form of Answer}
+If the answer is greater than or equal to 1 billion (it is a 10 digit number), you may leave it in the form $nPr$. However, if the number has 9 or fewer digits, you must evaluate it to get a numerical value.
 
 \section{IB Conventions}
 \begin{enumerate}
