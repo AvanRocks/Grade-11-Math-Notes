@@ -1,4 +1,5 @@
-\documentclass{report}
+\documentclass[letterpaper, 12pt]{report}
+\usepackage[margin=1in]{geometry}
 \newcommand\R{\mathbb{R}}
 \newcommand\Z{\mathbb{Z}}
 \newcommand\pv[1]{\overrightarrow{#1}}
@@ -1798,10 +1799,114 @@ The number of permutations of $n$ objects of which $a$ objects are alike and ano
 	\frac{n!}{a!b!c!\dots}
 \end{equation*}
 
+\subsubsection{Circular Permutations}
+The formula for the number of ways to arrange $n$ people around a circular table is
+\begin{equation*}
+	(n-1)!
+\end{equation*}
+
 
 \paragraph{Form of Answer}
 If the answer is greater than or equal to 1 billion (it is a 10 digit number), you may leave it in the form $nPr$. However, if the number has 9 or fewer digits, you must evaluate it to get a numerical value.
 
+\subsection{Sets}
+\subsubsection{Principle of Inclusion and Exclusion}
+\begin{equation}
+	n(A \cup B) = n(A) + n(B) - n(A \cap B)
+\end{equation}
+Note that
+\begin{equation}
+	n(A \cup B) \le n(A) + n(B)
+\end{equation}
+This can be extended to more than two sets. For three sets, $A, B, C$,
+\begin{eqnarray}
+	n(A \cup B \cup C) & = & n(A) + n(B) + n(C) \nonumber \\
+	& & {} - n(A \cap B) - n(B \cap C) - n(A \cap C) \nonumber \\
+	& & {} + n(A \cap B \cap C)
+\end{eqnarray}
+As before,
+\begin{equation}
+	n(A \cup B \cup C) \le n(A) + n(B) + n(C)
+\end{equation}
+
+\subsection{A Counting Trick}
+The total number of selelctions you can make from $p$ items of one kind, $q$ items of another kind, $r$ items of another kind is
+\begin{alignat}{2}{}
+	(p+1)(q+1)(r+1)\dots - 1
+\end{alignat}
+You subtract $1$ if you don't want to count the case where you selelct none. But if do you want to count this empty set, don't subtract one.
+\subsection{Binomial Theorem}
+The Binomial Theorem can be expanded to rational exponents. $n \in \mathbb{Q}$.
+\begin{alignat}{2}{}
+	(1+x)^n = 1 + nx + \frac{n(n-1)}{2!}x^2 + \frac{n(n-1)(n-2)}{3!}x^3 + \cdots \\
+\end{alignat}
+where the general term $t_{r+1}$ is given by
+\begin{alignat}{2}
+	t_{r+1} = \frac{(n)(n-1)(n-2)\cdots(n-r+1)}{r!} x^r
+\end{alignat}
+There is a restriction for this expansion. $|x| < 1$ must be true in order for the series to converge and thus for the expansion to be valid.
+\section{Probability}
+\subsection{Basic Definitions and Theorems}
+\begin{tabularx}{\textwidth}{l X}
+	Experiment: & a well-defined process from which observations can be made \\
+	Outcome: & one possible result of an experiment \\
+	Event: & a subset of all outcomes
+\end{tabularx}
+
+\bigskip \noindent
+For any event $A$, $0 \le P(A) \le 1$.
+
+Also,
+\begin{equation}
+	P(A) = \frac{n(A)}{n(S)}
+\end{equation}
+where $n(A)$ is the number of outcomes related to event $A$ and $n(S)$ is the total number of outcomes assuming all outcomes are equally likely.
+
+It is clear that
+\begin{alignat}{2}{}
+	P(A') = 1 - P(A)
+\end{alignat}
+
+\subsection{Mutually Exclusive}
+If two sets have no outcomes in common, they are said to be mutually exclusive.
+
+For mutually exclusive events $A$ and $B$,
+\begin{alignat}{2}{}
+	P(A \cup B) = P(A) + P(B)
+\end{alignat}
+This follows from the principle of inclusion-exclusion, $P(A \cup B) = P(A) + P(B) - P(A \cap B)$ and the fact that $P(A \cap B)=0$ for mutually exclusive events.
+
+\subsection{Conditional Probability}
+\begin{equation}
+	P(A|B) = \frac{P(A \cap B)}{P(B)}
+	\label{cond}
+\end{equation}
+which can also be written as
+\begin{alignat}{2}{}
+	P(A|B) = \frac{P(A \cap B)}{P(B)} = \frac{\frac{n(A\cap B)}{n(S)}}{\frac{n(B)}{n(S)}} = \frac{n(A\cap B)}{n(B)}
+\end{alignat}
+
+\subsection{Independent Events}
+Events where the occurrence of one event does not affect the occurrence of the other event are called independent events.
+
+For independent events $A$ and $B$,
+\begin{alignat}{2}{}
+	P(A|B) = P(A)
+	\label{independent}
+\end{alignat}
+because event $B$ occurring doesn't affect the probability of event A occurring.
+
+Substituting \eqref{independent} into \eqref{cond} gives this fact
+\begin{equation}
+	P(A \cap B) = P(A) \times P(B)
+\end{equation}
+
+\subsection{Bayes's Theorem}
+\subsubsection{Law of Total Probability}
+\begin{alignat*}{2}{}
+	p(B) = p(A) \times p(B|A) + p(A') \times p(B|A')
+\end{alignat*}
+This equation is much easier to follow if you look at a tree diagram.
 \section{IB Conventions}
 \begin{enumerate}
 	\item The set of Natural numbers includes 0. i.e. $\mathbb{N} = \{0,1,2,\dots\}$.
